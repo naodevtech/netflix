@@ -4,7 +4,7 @@ const fr = '&language=fr'
 const en = '&language=en'
 
 function fetchTvShowNetflix(){
-    const url = `https://api.themoviedb.org/3/tv/popular?with_networks=213&${API_KEY}`
+    const url = `https://api.themoviedb.org/3/tv/popular?with_networks=213&${API_KEY}${en}`
     return fetch(url)
     .then( res => { return res.json()})
     .then(series => {
