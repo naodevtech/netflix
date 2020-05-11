@@ -12,6 +12,7 @@ import tvShowNetflixRender from "./components/tvShowNetflixRender.mjs";
 
 (async () => {
     let series = await fetchTvShowNetflix()
-    console.log(series[1].backdrop_path)
-    document.getElementById('tvShowNetflix').innerHTML = tvShowNetflixRender(series)
+    for(let i = 0; i < 20; i++){
+    document.getElementById('tvShowNetflix').innerHTML += tvShowNetflixRender(series, i)
+    }
 })()
