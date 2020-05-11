@@ -108,6 +108,8 @@
         cursor: pointer;
         transition: all 450ms;
         transform: center left;
+        display: flex;
+        overflow-x: scroll;
 
         @include media(tablet) {
           height: 42rem;
