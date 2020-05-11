@@ -1,1 +1,0 @@
-['Coline', 'Imane', 'Abdul', 'Naïm']
