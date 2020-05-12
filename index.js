@@ -1,8 +1,9 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchActionMovies} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
 import topratedRender from './components/topratedRender.mjs'
+import actionMoviesRender from './components/actionMoviesRender.mjs'
 
 (async () => {
     let movie = await fetchMovie(157336);
@@ -21,7 +22,7 @@ import topratedRender from './components/topratedRender.mjs'
 
 (async () => {
   let trendings = await fetchMoviesTrendings();
-  console.log(trendings)
+  // console.log(trendings)
   for(let i = 0; i < trendings.length; i++){
     document.getElementById('trendingNow').innerHTML += trendingsMoviesRender(trendings, i)
   }
@@ -29,8 +30,16 @@ import topratedRender from './components/topratedRender.mjs'
 
 (async () => {
   let rated = await fetchTopRated();
-  console.log(rated)
+  // console.log(rated)
   for(let i = 0; i < rated.length; i++){
     document.getElementById('ratedNow').innerHTML += topratedRender(rated, i)
+  }
+})();
+
+(async () => {
+  let action = await fetchActionMovies();
+  console.log(action)
+  for(let i = 0; i < action.length; i++){
+    document.getElementById('actionMovies').innerHTML += actionMoviesRender(action, i)
   }
 })();

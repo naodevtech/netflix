@@ -28,3 +28,12 @@ export async function fetchTopRated(){
   let rated = await res.json()
   return rated.results
 }
+
+export async function fetchActionMovies(){
+  const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=28`
+  let res = await fetch(url)
+  let action = await res.json()
+  console.log(action)
+  return action.results
+  }
+
