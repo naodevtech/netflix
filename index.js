@@ -50,7 +50,7 @@ import documentariesMoviesRender from './components/documentariesMoviesRender.mj
   let moviesByGenre = await fetchByGenreMovies(35);
   // console.log(moviesByGenre)
   for(let i = 0; i < moviesByGenre.length; i++){
-    document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(moviesByGenre, i)
+    document.getElementById('comediesMovies').innerHTML += comedyMoviesRender(moviesByGenre, i)
   }
 })();
 
