@@ -37,3 +37,18 @@ export async function fetchActionMovies(){
   return action.results
   }
 
+  export async function fetchComedyMovies(){
+    const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=35`
+    let res = await fetch(url)
+    let comedy = await res.json()
+    console.log(comedy)
+    return comedy.results
+    }
+
+    export async function fetchDocumentaryMovies(){
+      const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=99`
+      let res = await fetch(url)
+      let docu = await res.json()
+      console.log(docu)
+      return docu.results
+      }

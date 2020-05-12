@@ -1,9 +1,11 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchActionMovies} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchActionMovies, fetchComedyMovies, fetchDocumentaryMovies} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
 import topratedRender from './components/topratedRender.mjs'
 import actionMoviesRender from './components/actionMoviesRender.mjs'
+import comedyMoviesRender from './components/comedyMoviesRender.mjs'
+import documentaryMoviesRender from './components/documentaryMoviesRender.mjs'
 
 (async () => {
     let movie = await fetchMovie(157336);
@@ -43,3 +45,19 @@ import actionMoviesRender from './components/actionMoviesRender.mjs'
     document.getElementById('actionMovies').innerHTML += actionMoviesRender(action, i)
   }
 })();
+
+(async () => {
+    let comedy = await fetchComedyMovies();
+    console.log(comedy)
+    for(let i = 0; i < comedy.length; i++){
+      document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(comedy, i)
+    }
+  })();
+
+  (async () => {
+    let docu = await fetchDocumentaryMovies();
+    console.log(docu)
+    for(let i = 0; i < docu.length; i++){
+      document.getElementById('documentaryMovies').innerHTML += documentaryMoviesRender(docu, i)
+    }
+  })();
