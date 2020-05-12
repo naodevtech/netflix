@@ -82,6 +82,8 @@
       padding-bottom: 4rem;
       height: 21.5rem;
       min-height: 0;
+      display: flex;
+      overflow-y: scroll;
 
       @include media(tablet) {
         height: 18.5rem;
@@ -109,7 +111,7 @@
         transition: all 450ms;
         transform: center left;
         display: flex;
-        overflow-x: scroll;
+        overflow-y: scroll;
 
         @include media(tablet) {
           height: 42rem;

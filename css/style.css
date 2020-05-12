@@ -202,7 +202,9 @@ html {
       padding-top: 3.5rem;
       padding-bottom: 4rem;
       height: 21.5rem;
-      min-height: 0; }
+      min-height: 0;
+      display: flex;
+      overflow-y: scroll; }
       @media only screen and (max-width: 1024px) {
         .movies__container--movie {
           height: 18.5rem; } }
@@ -223,7 +225,7 @@ html {
         transition: all 450ms;
         transform: center left;
         display: flex;
-        overflow-x: scroll; }
+        overflow-y: scroll; }
         @media only screen and (max-width: 1024px) {
           .movies__container--movie__netflix {
             height: 42rem; } }
