@@ -1,11 +1,11 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchActionMovies, fetchComedyMovies, fetchDocumentaryMovies} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchActionMovies, fetchComedyMovies, fetchDocumentariesMovies} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
 import topratedRender from './components/topratedRender.mjs'
 import actionMoviesRender from './components/actionMoviesRender.mjs'
-import comedyMoviesRender from './components/comedyMoviesRender.mjs'
-import documentaryMoviesRender from './components/documentaryMoviesRender.mjs'
+import comedyMoviesRender from './components/comediesMoviesRender.mjs'
+import documentariesMoviesRender from './components/documentariesMoviesRender.mjs'
 
 (async () => {
     let movie = await fetchMovie(157336);
@@ -23,41 +23,41 @@ import documentaryMoviesRender from './components/documentaryMoviesRender.mjs'
 })();
 
 (async () => {
-  let trendings = await fetchMoviesTrendings();
-  // console.log(trendings)
-  for(let i = 0; i < trendings.length; i++){
-    document.getElementById('trendingNow').innerHTML += trendingsMoviesRender(trendings, i)
+  let moviesTrendings = await fetchMoviesTrendings();
+  // console.log(moviestrendings)
+  for(let i = 0; i < moviesTrendings.length; i++){
+    document.getElementById('trendingNow').innerHTML += trendingsMoviesRender(moviesTrendings, i)
   }
 })();
 
 (async () => {
-  let rated = await fetchTopRated();
-  // console.log(rated)
-  for(let i = 0; i < rated.length; i++){
-    document.getElementById('ratedNow').innerHTML += topratedRender(rated, i)
+  let moviesRated = await fetchTopRated();
+  // console.log(moviesRated)
+  for(let i = 0; i < moviesRated.length; i++){
+    document.getElementById('ratedNow').innerHTML += topratedRender(moviesRated, i)
   }
 })();
 
 (async () => {
-  let action = await fetchActionMovies();
-  console.log(action)
-  for(let i = 0; i < action.length; i++){
-    document.getElementById('actionMovies').innerHTML += actionMoviesRender(action, i)
+  let moviesAction = await fetchActionMovies();
+  // console.log(action)
+  for(let i = 0; i < moviesAction.length; i++){
+    document.getElementById('actionMovies').innerHTML += actionMoviesRender(moviesAction, i)
   }
 })();
 
 (async () => {
-    let comedy = await fetchComedyMovies();
-    console.log(comedy)
-    for(let i = 0; i < comedy.length; i++){
-      document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(comedy, i)
+    let moviesComedies = await fetchComedyMovies();
+    // console.log(comedy)
+    for(let i = 0; i < moviesComedies.length; i++){
+      document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(moviesComedies, i)
     }
   })();
 
   (async () => {
-    let docu = await fetchDocumentaryMovies();
-    console.log(docu)
-    for(let i = 0; i < docu.length; i++){
-      document.getElementById('documentaryMovies').innerHTML += documentaryMoviesRender(docu, i)
+    let documentaries = await fetchDocumentariesMovies();
+    // console.log(documentaries)
+    for(let i = 0; i < documentaries.length; i++){
+      document.getElementById('documentaryMovies').innerHTML += documentariesMoviesRender(documentaries, i)
     }
   })();

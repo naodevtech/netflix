@@ -18,37 +18,37 @@ export async function fetchTvShowNetflix(){
 export async function fetchMoviesTrendings(){
   const url = `https://api.themoviedb.org/3/trending/all/day?${API_KEY}`
   let res = await fetch(url)
-  let trendings = await res.json()
-  return trendings.results
+  let moviesTrendings = await res.json()
+  return moviesTrendings.results
 }
 
 export async function fetchTopRated(){
   const url = `https://api.themoviedb.org/3/movie/top_rated?${API_KEY}&language=en-US&page=1`
   let res = await fetch(url)
-  let rated = await res.json()
-  return rated.results
+  let moviesRated = await res.json()
+  return moviesRated.results
 }
 
 export async function fetchActionMovies(){
   const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=28`
   let res = await fetch(url)
-  let action = await res.json()
-  console.log(action)
-  return action.results
+  let moviesAction = await res.json()
+  // console.log(action)
+  return moviesAction.results
   }
 
-  export async function fetchComedyMovies(){
-    const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=35`
-    let res = await fetch(url)
-    let comedy = await res.json()
-    console.log(comedy)
-    return comedy.results
-    }
+export async function fetchComedyMovies(){
+  const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=35`
+  let res = await fetch(url)
+  let moviesComedies = await res.json()
+  // console.log(comedy)
+  return moviesComedies.results
+  }
 
-    export async function fetchDocumentaryMovies(){
-      const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=99`
-      let res = await fetch(url)
-      let docu = await res.json()
-      console.log(docu)
-      return docu.results
-      }
+export async function fetchDocumentariesMovies(){
+  const url = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=99`
+  let res = await fetch(url)
+  let documentaries = await res.json()
+  // console.log(documentaries)
+  return documentaries.results
+  }
