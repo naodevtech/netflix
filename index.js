@@ -1,4 +1,4 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchActionMovies, fetchComedyMovies, fetchDocumentariesMovies} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
@@ -39,25 +39,25 @@ import documentariesMoviesRender from './components/documentariesMoviesRender.mj
 })();
 
 (async () => {
-  let moviesAction = await fetchActionMovies();
-  // console.log(action)
-  for(let i = 0; i < moviesAction.length; i++){
-    document.getElementById('actionMovies').innerHTML += actionMoviesRender(moviesAction, i)
+  let moviesByGenre = await fetchByGenreMovies(28);
+  // console.log(moviesByGenre)
+  for(let i = 0; i < moviesByGenre.length; i++){
+    document.getElementById('actionMovies').innerHTML += actionMoviesRender(moviesByGenre, i)
   }
 })();
 
 (async () => {
-    let moviesComedies = await fetchComedyMovies();
-    // console.log(comedy)
-    for(let i = 0; i < moviesComedies.length; i++){
-      document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(moviesComedies, i)
-    }
+  let moviesByGenre = await fetchByGenreMovies(35);
+  // console.log(moviesByGenre)
+  for(let i = 0; i < moviesByGenre.length; i++){
+    document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(moviesByGenre, i)
+  }
 })();
 
 (async () => {
-  let documentaries = await fetchDocumentariesMovies();
-  // console.log(documentaries)
-  for(let i = 0; i < documentaries.length; i++){
-    document.getElementById('documentariesMovies').innerHTML += documentariesMoviesRender(documentaries, i)
+  let moviesByGenre = await fetchByGenreMovies(99);
+  // console.log(moviesByGenre)
+  for(let i = 0; i < moviesByGenre.length; i++){
+    document.getElementById('documentariesMovies').innerHTML += documentariesMoviesRender(moviesByGenre, i)
   }
 })();
