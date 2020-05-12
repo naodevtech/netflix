@@ -52,12 +52,12 @@ import documentariesMoviesRender from './components/documentariesMoviesRender.mj
     for(let i = 0; i < moviesComedies.length; i++){
       document.getElementById('comedyMovies').innerHTML += comedyMoviesRender(moviesComedies, i)
     }
-  })();
+})();
 
-  (async () => {
-    let documentaries = await fetchDocumentariesMovies();
-    // console.log(documentaries)
-    for(let i = 0; i < documentaries.length; i++){
-      document.getElementById('documentaryMovies').innerHTML += documentariesMoviesRender(documentaries, i)
-    }
-  })();
+(async () => {
+  let documentaries = await fetchDocumentariesMovies();
+  // console.log(documentaries)
+  for(let i = 0; i < documentaries.length; i++){
+    document.getElementById('documentariesMovies').innerHTML += documentariesMoviesRender(documentaries, i)
+  }
+})();
