@@ -23,6 +23,16 @@
       @include media(phone) {
         padding-left: 1rem;
       }
+
+      & .cross{
+        padding: 1em;
+        // background-color: red;
+        font-size: 2.5em;
+        font-weight: 900;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -2em;
+      }
   
       &-heading {
         font-size: 6rem;
