@@ -1,4 +1,4 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchtvShowNetflixForModal} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
@@ -6,6 +6,7 @@ import topratedRender from './components/topratedRender.mjs'
 import actionMoviesRender from './components/actionMoviesRender.mjs'
 import comedyMoviesRender from './components/comediesMoviesRender.mjs'
 import documentariesMoviesRender from './components/documentariesMoviesRender.mjs'
+import modalRender from './components/modalRender.mjs'
 
 (async () => {
     let movie = await fetchMovie(157336);
@@ -15,9 +16,24 @@ import documentariesMoviesRender from './components/documentariesMoviesRender.mj
 })();
 
 (async () => {
+    document.querySelectorAll('#tvShowNetflix').forEach((film) => film.addEventListener('click', async (e) => {
+    let id = parseInt(e.target.attributes[1].value)
+    let tvShow = await fetchtvShowNetflixForModal(id);
+    console.log(id)
+    console.log(tvShow)
+    if(id === tvShow.id){
+      document.getElementById("container-modal").innerHTML = modalRender(tvShow);
+      document.getElementById("container-modal").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${tvShow.backdrop_path})`;
+    } else {
+      console.log('none')
+    }
+  }))
+})();
+
+(async () => {
   let series = await fetchTvShowNetflix();
   // console.log(series)
-  for(let i = 0; i < 20; i++){
+  for(let i = 0; i < series.length; i++){
     document.getElementById('tvShowNetflix').innerHTML += tvShowNetflix(series, i)
   }
 })();
