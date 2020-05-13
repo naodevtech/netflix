@@ -24,6 +24,9 @@ import modalRender from './components/modalRender.mjs'
     if(id === tvShow.id){
       document.getElementById("container-modal").innerHTML = modalRender(tvShow);
       document.getElementById("container-modal").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${tvShow.backdrop_path})`;
+      document.querySelector("#container-modal").style.backgroundSize = `cover`;
+      document.querySelector("#container-modal").style.backgroundPosition = `center`;
+      document.querySelector("#container-modal").style.height = `60vh`;
     } else {
       console.log('none')
     }

@@ -10,7 +10,8 @@
     }
   
     &__container {
-        margin-top: -4rem;
+      height: 100%;
+      margin-top: -4rem;
       padding: 7.5rem 0;
       background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.5) 100%);
       @include media(phone) {

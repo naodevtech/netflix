@@ -9,14 +9,6 @@ export async function fetchMovie(movieId) {
   return movie;
 }
 
-export async function fetchtvShowNetflixForModal(tvShowId) {
-  const url = `https://api.themoviedb.org/3/tv/${tvShowId}?${API_KEY}`
-  let res = await fetch(url)
-  let tvShow = await res.json()
-  // console.log(tvShow)
-  return tvShow;
-}
-
 export async function fetchTvShowNetflix(){
   const url = `https://api.themoviedb.org/3/tv/popular?with_networks=213&${API_KEY}`
   let res = await fetch(url);
@@ -49,3 +41,13 @@ export async function fetchByGenreMovies(genre) {
   return moviesByGenre.results
   
 }
+
+
+export async function fetchtvShowNetflixForModal(tvShowId) {
+  const url = `https://api.themoviedb.org/3/tv/${tvShowId}?${API_KEY}`
+  let res = await fetch(url)
+  let tvShow = await res.json()
+  // console.log(tvShow)
+  return tvShow;
+}
+
