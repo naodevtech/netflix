@@ -161,3 +161,24 @@ if(idTarget === infosProgram.id){
   }
 }))
 })();
+
+
+
+(async () => {
+  document.querySelectorAll('#documentariesMovies').forEach((film) => film.addEventListener('click', async (e) => {
+  let idTarget = parseInt(e.target.attributes[1].value)
+  let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
+   console.log(film)
+   console.log(idTarget)
+   console.log(infosProgram)
+  if(idTarget === infosProgram.id){
+    document.getElementById("container-modal-documentariesMovies").innerHTML = modalRender(infosProgram);
+    document.getElementById("container-modal-documentariesMovies").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+    document.querySelector("#container-modal-documentariesMovies").style.backgroundSize = `cover`;
+    document.querySelector("#container-modal-documentariesMovies").style.backgroundPosition = `center`;
+    document.querySelector("#container-modal-documentariesMovies").style.height = `60vh`;
+  } else {
+    console.error()
+  }
+}))
+})();
