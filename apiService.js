@@ -43,11 +43,10 @@ export async function fetchByGenreMovies(genre) {
 }
 
 
-export async function fetchtvShowNetflixForModal(tvShowId) {
-  const url = `https://api.themoviedb.org/3/tv/${tvShowId}?${API_KEY}`
+export async function fetchInfosModal(urlDefault, id) {
+  const url = `${urlDefault}${id}?${API_KEY}`
   let res = await fetch(url)
-  let tvShow = await res.json()
-  // console.log(tvShow)
-  return tvShow;
+  let infosProgram = await res.json()
+  // console.log(infosProgram)
+  return infosProgram;
 }
-
