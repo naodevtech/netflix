@@ -73,22 +73,30 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
   document.querySelectorAll('#tvShowNetflix').forEach((film) => film.addEventListener('click', async (e) => {
   let idTarget = parseInt(e.target.attributes[1].value)
   let infosProgram = await fetchInfosModal(URL_TVSHOW, idTarget)
+  let netflixContainer = document.getElementById('container-modal-netflix')
   // console.log(idTarget)
   // console.log(infosProgram)
   if(idTarget === infosProgram.id){
-	document.getElementById("container-modal-netflix").innerHTML = modalRender(infosProgram);
-	document.getElementById("container-modal-netflix").style.display = 'block'
-	document.getElementById("container-modal-netflix").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-	document.querySelector("#container-modal-netflix").style.backgroundSize = `cover`;
-	document.querySelector("#container-modal-netflix").style.backgroundPosition = `center`;
+	netflixContainer.innerHTML = modalRender(infosProgram);
+	netflixContainer.style.display = 'block'
+	netflixContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+	netflixContainer.style.backgroundSize = `cover`;
+	netflixContainer.style.backgroundPosition = `center`;
 	active = false
 	if(active == false){
+	let cross = netflixContainer.getElementsByClassName('cross')
+	if(cross && cross[0]){
+		cross[0].addEventListener('click', (e) =>{
+		console.log('hello')
+		netflixContainer.style.display = 'none'
+		active = true
+		})
+	}
 	document.getElementById('cross').addEventListener('click', (e) =>{
 	console.log('hello')
-	document.getElementById("container-modal-netflix").style.display = 'none'
+	netflixContainer.style.display = 'none'
 	active = true
-	})
-	} 
+	})} 
   } else {
     console.error()
   }
@@ -98,12 +106,9 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 (async () => {
 	let active = true;
 	document.querySelectorAll('#trendingNow').forEach((film) => film.addEventListener('click', async (e) => {
-	// e.target.style.border = "3px solid white"
 	let idTarget = parseInt(e.target.attributes[1].value)
 	let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
 	let trendingsContainer = document.getElementById('container-modal-trendings')
-	// console.log(idTarget)
-	// console.log(infosProgram)
 	if(idTarget === infosProgram.id){
 		trendingsContainer.innerHTML = modalRender(infosProgram);
 		trendingsContainer.style.display = 'block'
@@ -119,12 +124,7 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 			trendingsContainer.style.display = 'none'
 			active = true
 			})
-		}
-		document.getElementById('cross').addEventListener('click', (e) =>{
-		console.log('hello')
-		document.getElementById("container-modal-trendings").style.display = 'none'
-		active = true
-		})}
+		}}
 	} 
 	else {
 	console.error()
@@ -154,10 +154,10 @@ document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('
 			active = true
 			})
 		}}
-		} else {
-		console.error()
-		}
-		}))
+	} else {
+	console.error()
+	}
+	}))
 })();
 
 (async () => {
