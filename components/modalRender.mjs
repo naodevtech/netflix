@@ -1,7 +1,7 @@
 export default function modalRender(props) {
     return `
             <div class="modal__container">
-            <div id="cross">X</div>
+            <div class="cross">X</div>
               <h2 class="modal__container-heading">${props.name || props.original_title}</h2>
               <div class="modal__container-details">
                 <p class="modal__container-details-p">${Math.ceil(props.popularity)}%</p>
@@ -15,5 +15,3 @@ export default function modalRender(props) {
             </div>
           `;
 }
-
-  

@@ -13,10 +13,10 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 
 // Fetch and display DOM
 (async () => {
-    let movie = await fetchMovie(157336);
+    let movie = await fetchInfosModal(URL_TVSHOW, 1399);
     // console.log(movie)
     document.getElementById("header").innerHTML = Header(movie);
-    document.getElementById("header").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`;
+	document.getElementById("header").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/2UrGpntyQtgunf039MErok78ZOK.jpg)`;
 })();
 
 (async () => {
@@ -101,16 +101,25 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 	// e.target.style.border = "3px solid white"
 	let idTarget = parseInt(e.target.attributes[1].value)
 	let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
-	console.log(idTarget)
-	console.log(infosProgram)
+	let trendingsContainer = document.getElementById('container-modal-trendings')
+	// console.log(idTarget)
+	// console.log(infosProgram)
 	if(idTarget === infosProgram.id){
-		document.getElementById("container-modal-trendings").innerHTML = modalRender(infosProgram);
-		document.getElementById("container-modal-trendings").style.display = 'block'
-		document.getElementById("container-modal-trendings").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-		document.querySelector("#container-modal-trendings").style.backgroundSize = `cover`;
-		document.querySelector("#container-modal-trendings").style.backgroundPosition = `center`;
+		trendingsContainer.innerHTML = modalRender(infosProgram);
+		trendingsContainer.style.display = 'block'
+		trendingsContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+		trendingsContainer.style.backgroundSize = `cover`;
+		trendingsContainer.style.backgroundPosition = `center`;
 		active = false
 		if(active == false){
+		let cross = trendingsContainer.getElementsByClassName('cross')
+		if(cross && cross[0]){
+			cross[0].addEventListener('click', (e) =>{
+			console.log('hello')
+			trendingsContainer.style.display = 'none'
+			active = true
+			})
+		}
 		document.getElementById('cross').addEventListener('click', (e) =>{
 		console.log('hello')
 		document.getElementById("container-modal-trendings").style.display = 'none'
@@ -128,19 +137,23 @@ let active = true;
 document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('click', async (e) => {
 	let idTarget = parseInt(e.target.attributes[1].value)
 	let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
+	let rateContainer = document.getElementById('container-modal-ratedNow')
 	if(idTarget === infosProgram.id){
-		document.getElementById("container-modal-ratedNow").innerHTML = modalRender(infosProgram);
-		document.getElementById("container-modal-ratedNow").style.display = 'block'
-		document.getElementById("container-modal-ratedNow").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-		document.querySelector("#container-modal-ratedNow").style.backgroundSize = `cover`;
-		document.querySelector("#container-modal-ratedNow").style.backgroundPosition = `center`;
+		rateContainer.innerHTML = modalRender(infosProgram);
+		rateContainer.style.display = 'block'
+		rateContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+		rateContainer.style.backgroundSize = `cover`;
+		rateContainer.style.backgroundPosition = `center`;
 		active = false
 		if(active == false){
-		document.getElementById('cross').addEventListener('click', (e) =>{
-		console.log('hello')
-		document.getElementById("container-modal-ratedNow").style.display = 'none'
-		active = true
-		})}
+		let cross = rateContainer.getElementsByClassName('cross')
+		if(cross && cross[0]){
+			cross[0].addEventListener('click', (e) =>{
+			console.log('hello')
+			document.getElementById("container-modal-ratedNow").style.display = 'none'
+			active = true
+			})
+		}}
 		} else {
 		console.error()
 		}
@@ -205,9 +218,9 @@ document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('
   document.querySelectorAll('#documentariesMovies').forEach((film) => film.addEventListener('click', async (e) => {
   let idTarget = parseInt(e.target.attributes[1].value)
   let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
-   console.log(film)
-   console.log(idTarget)
-   console.log(infosProgram)
+//    console.log(film)
+//    console.log(idTarget)
+//    console.log(infosProgram)
    if(idTarget === infosProgram.id){
 	document.getElementById("container-modal-documentariesMovies").innerHTML = modalRender(infosProgram);
 	document.getElementById("container-modal-documentariesMovies").style.display = 'block'
@@ -226,3 +239,4 @@ document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('
   }
 }))
 })();
+
