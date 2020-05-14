@@ -233,6 +233,9 @@ html {
           .movies__container--movie__netflix {
             height: 34rem; } }
 
+.toggled {
+  display: none; }
+
 .modal {
   background-color: #111111;
   display: flex;
@@ -254,13 +257,14 @@ html {
     @media only screen and (max-width: 768px) {
       .modal__container {
         padding-left: 1rem; } }
-    .modal__container .cross {
+    .modal__container #cross {
       padding: 1em;
       font-size: 2.5em;
       font-weight: 900;
       display: flex;
       justify-content: flex-end;
-      margin-top: -2em; }
+      margin-top: -2em;
+      cursor: pointer; }
     .modal__container-heading {
       font-size: 6rem;
       padding-bottom: 1rem; }

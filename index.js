@@ -86,7 +86,7 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
   }
 }))
 })();
-
+let active = true;
 (async () => {
 document.querySelectorAll('#trendingNow').forEach((film) => film.addEventListener('click', async (e) => {
 let idTarget = parseInt(e.target.attributes[1].value)
@@ -94,11 +94,22 @@ let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
 // console.log(idTarget)
 // console.log(infosProgram)
 if(idTarget === infosProgram.id){
-  document.getElementById("container-modal-trendings").innerHTML = modalRender(infosProgram);
-  document.getElementById("container-modal-trendings").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-  document.querySelector("#container-modal-trendings").style.backgroundSize = `cover`;
-  document.querySelector("#container-modal-trendings").style.backgroundPosition = `center`;
-  document.querySelector("#container-modal-trendings").style.height = `60vh`;
+  if(active == true){
+    document.getElementById("container-modal-trendings").innerHTML = modalRender(infosProgram);
+    document.getElementById("container-modal-trendings").style.display = 'block'
+    document.getElementById("container-modal-trendings").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+    document.querySelector("#container-modal-trendings").style.backgroundSize = `cover`;
+    document.querySelector("#container-modal-trendings").style.backgroundPosition = `center`;
+    // console.log(document.getElementById('cross'))
+    active = false
+    if(active == false){
+      document.getElementById('cross').addEventListener('click', (e) =>{
+        console.log('hello')
+       document.getElementById("container-modal-trendings").style.display = 'none'
+       active = true
+      })
+    }
+  } 
 } else {
   console.error()
 }
@@ -118,6 +129,9 @@ if(idTarget === infosProgram.id){
   document.querySelector("#container-modal-ratedNow").style.backgroundSize = `cover`;
   document.querySelector("#container-modal-ratedNow").style.backgroundPosition = `center`;
   document.querySelector("#container-modal-ratedNow").style.height = `60vh`;
+  document.getElementById('cross').addEventListener('click', (e) => {
+    console.log('error')
+  })
 } else {
   console.error()
 }
