@@ -1,6 +1,15 @@
 .search-container {
    background-color: $color-background;
    min-height: 100%;
+   padding-top: 7rem;
    padding-bottom: 4rem;
    padding-left: 4rem;
+   display: flex;
+
+   flex-wrap: wrap;
+}
+
+.search-container img{
+   // height: 40rem;
+   width: 30rem;
 }

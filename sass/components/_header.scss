@@ -4,6 +4,7 @@
   height: 65rem;
   background-size: cover;
   background-position: center;
+  background-position-y: top;
 
   @include media(phone) {
     height: 50rem;

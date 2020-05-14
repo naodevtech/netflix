@@ -50,3 +50,11 @@ export async function fetchInfosModal(urlDefault, id) {
   // console.log(infosProgram)
   return infosProgram;
 }
+
+export async function fetchSearching(urlDefault, search) {
+  const url = `${urlDefault}?${API_KEY}&include_adult=false&language=en-US&query=${search}`
+  let res = await fetch(url)
+  let infosProgram = await res.json()
+  console.log(infosProgram)
+  return infosProgram.results;
+}

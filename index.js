@@ -1,4 +1,4 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchInfosModal} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchInfosModal, fetchSearching} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
@@ -7,16 +7,19 @@ import actionMoviesRender from './components/actionMoviesRender.mjs'
 import comedyMoviesRender from './components/comediesMoviesRender.mjs'
 import documentariesMoviesRender from './components/documentariesMoviesRender.mjs'
 import modalRender from './components/modalRender.mjs'
+import searchRender from './components/searchRender.mjs'
+
 
 const URL_MOVIES = 'https://api.themoviedb.org/3/movie/';
 const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
+const URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
 // Fetch and display DOM
 (async () => {
-    let movie = await fetchInfosModal(URL_TVSHOW, 1399);
+    let movie = await fetchInfosModal(URL_MOVIES, 475557);
     // console.log(movie)
     document.getElementById("header").innerHTML = Header(movie);
-	document.getElementById("header").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/2UrGpntyQtgunf039MErok78ZOK.jpg)`;
+	document.getElementById("header").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/f5F4cRhQdUbyVbB5lTNCwUzD6BP.jpg)`;
 })();
 
 (async () => {
@@ -66,6 +69,35 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
     document.getElementById('documentariesMovies').innerHTML += documentariesMoviesRender(moviesByGenre, i)
   }
 })();
+
+(async () => {
+	document.getElementById('inputSearch').addEventListener('input', async (e) => {
+		if(e.target.value){
+			console.log(e.target.value)
+			let infosProgram = await fetchSearching(URL_SEARCH, e.target.value);
+			console.log(infosProgram)
+			let containerMovies = document.getElementsByClassName('movies')
+			console.log(containerMovies[0])
+			containerMovies[0].style.display = 'none'
+			let header = document.getElementById('header').style.display = 'none'
+			let containerSearch = document.getElementsByClassName('search-container')
+			for(let i = 0; i < infosProgram.length; i++){
+				containerSearch[0].innerHTML += searchRender(infosProgram, i)
+			}
+		} else if(e.target.value == false){
+			console.log('vide')
+		}
+		window.document.addEventListener('click', (e) =>{
+			let containerMovies = document.getElementsByClassName('movies')
+			containerMovies[0].style.display = 'block'
+			document.getElementById('header').style.display = 'block'
+			let containerSearch = document.getElementsByClassName('search-container')
+			containerSearch[0].innerHTML = ''
+			console.log(containerSearch[0].childNodes)
+		})
+	})
+  })();
+
 
 // Modals
 (async () => {
@@ -243,3 +275,5 @@ document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('
 		}
 	}))
 })();
+
+// Input
