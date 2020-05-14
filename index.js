@@ -76,27 +76,26 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 		let netflixContainer = document.getElementById('container-modal-netflix')
 		// console.log(idTarget)
 		// console.log(infosProgram)
-	if(idTarget === infosProgram.id){
-		netflixContainer.innerHTML = modalRender(infosProgram);
-		netflixContainer.style.display = 'block'
-		netflixContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-		netflixContainer.style.backgroundSize = `cover`;
-		netflixContainer.style.backgroundPosition = `center`;
-		active = false
-		if(active == false){
-			let cross = netflixContainer.getElementsByClassName('cross')
-		if(cross && cross[0]){
-			cross[0].addEventListener('click', (e) =>{
-				console.log('hello')
-				netflixContainer.style.display = 'none'
-				active = true
-			})
+		if(idTarget === infosProgram.id){
+			netflixContainer.innerHTML = modalRender(infosProgram);
+			netflixContainer.style.display = 'block'
+			netflixContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+			netflixContainer.style.backgroundSize = `cover`;
+			netflixContainer.style.backgroundPosition = `center`;
+			active = false
+			if(active == false){
+				let cross = netflixContainer.getElementsByClassName('cross')
+				if(cross && cross[0]){
+					cross[0].addEventListener('click', (e) =>{
+						netflixContainer.style.display = 'none'
+						active = true
+					})
+				}
+			}	
+		}else {
+			console.error()
 		}
-		
-	}else {
-    console.error()
-  	}
-}))
+	}))
 })();
 
 (async () => {
@@ -116,7 +115,6 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 				let cross = trendingsContainer.getElementsByClassName('cross')
 				if(cross && cross[0]){
 					cross[0].addEventListener('click', (e) =>{
-						console.log('hello')
 						trendingsContainer.style.display = 'none'
 						active = true
 					})
@@ -158,82 +156,90 @@ document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('
 })();
 
 (async () => {
-  let active = true;
-  document.querySelectorAll('#actionMovies').forEach((film) => film.addEventListener('click', async (e) => {
-  let idTarget = parseInt(e.target.attributes[1].value)
-  let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
-  if(idTarget === infosProgram.id){
-	document.getElementById("container-modal-actionMovies").innerHTML = modalRender(infosProgram);
-	document.getElementById("container-modal-actionMovies").style.display = 'block'
-	document.getElementById("container-modal-actionMovies").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-	document.querySelector("#container-modal-actionMovies").style.backgroundSize = `cover`;
-	document.querySelector("#container-modal-actionMovies").style.backgroundPosition = `center`;
-	active = false
-	if(active == false){
-	document.getElementById('cross').addEventListener('click', (e) =>{
-	console.log('hello')
-	document.getElementById("container-modal-actionMovies").style.display = 'none'
-	active = true
-	})}
-	}  else {
-    console.error()
-  }
-}))
+	let active = true;
+	document.querySelectorAll('#actionMovies').forEach((film) => film.addEventListener('click', async (e) => {
+		let idTarget = parseInt(e.target.attributes[1].value)
+		let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
+		let actionMoviesContainer = document.getElementById('container-modal-actionMovies')
+		if(idTarget === infosProgram.id){
+			actionMoviesContainer.innerHTML = modalRender(infosProgram);
+			actionMoviesContainer.style.display = 'block'
+			actionMoviesContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+			actionMoviesContainer.style.backgroundSize = `cover`;
+			actionMoviesContainer.style.backgroundPosition = `center`;
+			active = false
+			if(active == false){
+				let cross = actionMoviesContainer.getElementsByClassName('cross')
+				if(cross && cross[0]){
+					cross[0].addEventListener('click', (e) =>{
+						console.log('hello')
+						actionMoviesContainer.style.display = 'none'
+						active = true
+					})
+				}
+			}	
+		} else {
+		console.error()
+		}
+	}))
 })();
 
 (async () => {
-  let active = true;
-  document.querySelectorAll('#comediesMovies').forEach((film) => film.addEventListener('click', async (e) => {
-  let idTarget = parseInt(e.target.attributes[1].value)
-  let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
-  // console.log(film)
-  // console.log(idTarget)
-  // console.log(infosProgram)
-  if(idTarget === infosProgram.id){
-	document.getElementById("container-modal-comediesMovies").innerHTML = modalRender(infosProgram);
-	document.getElementById("container-modal-comediesMovies").style.display = 'block'
-	document.getElementById("container-modal-comediesMovies").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-	document.querySelector("#container-modal-comediesMovies").style.backgroundSize = `cover`;
-	document.querySelector("#container-modal-comediesMovies").style.backgroundPosition = `center`;
-	active = false
-	if(active == false){
-	document.getElementById('cross').addEventListener('click', (e) =>{
-	console.log('hello')
-	document.getElementById("container-modal-comediesMovies").style.display = 'none'
-	active = true
-	})}
-	} else {
-    console.error()
-  }
-}))
+	let active = true;
+	document.querySelectorAll('#comediesMovies').forEach((film) => film.addEventListener('click', async (e) => {
+		let idTarget = parseInt(e.target.attributes[1].value)
+		let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
+		let comediesMoviesContainer = document.getElementById('container-modal-comediesMovies')
+		if(idTarget === infosProgram.id){
+			comediesMoviesContainer.innerHTML = modalRender(infosProgram);
+			comediesMoviesContainer.style.display = 'block'
+			comediesMoviesContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+			comediesMoviesContainer.style.backgroundSize = `cover`;
+			comediesMoviesContainer.style.backgroundPosition = `center`;
+			active = false
+			if(active == false){
+				let cross =comediesMoviesContainer.getElementsByClassName('cross')
+				if(cross && cross[0]){
+					cross[0].addEventListener('click', (e) =>{
+						comediesMoviesContainer.style.display = 'none'
+						active = true
+					})
+				}
+			}
+		}	 
+		else {
+			console.error()
+		}
+	}))
 })();
 
 
 
 (async () => {
-  let active = true;
-  document.querySelectorAll('#documentariesMovies').forEach((film) => film.addEventListener('click', async (e) => {
-  let idTarget = parseInt(e.target.attributes[1].value)
-  let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
-//    console.log(film)
-//    console.log(idTarget)
-//    console.log(infosProgram)
-   if(idTarget === infosProgram.id){
-	document.getElementById("container-modal-documentariesMovies").innerHTML = modalRender(infosProgram);
-	document.getElementById("container-modal-documentariesMovies").style.display = 'block'
-	document.getElementById("container-modal-documentariesMovies").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-	document.querySelector("#container-modal-documentariesMovies").style.backgroundSize = `cover`;
-	document.querySelector("#container-modal-documentariesMovies").style.backgroundPosition = `center`;
-	active = false
-	if(active == false){
-	document.getElementById('cross').addEventListener('click', (e) =>{
-	console.log('hello')
-	document.getElementById("container-modal-documentariesMovies").style.display = 'none'
-	active = true
-	})}
-	} else {
-    console.error()
-  }
-}))
+	let active = true;
+	document.querySelectorAll('#documentariesMovies').forEach((film) => film.addEventListener('click', async (e) => {
+		let idTarget = parseInt(e.target.attributes[1].value)
+		let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
+		let documentariesMoviesContainer = document.getElementById('container-modal-documentariesMovies')
+		if(idTarget === infosProgram.id){
+			documentariesMoviesContainer.innerHTML = modalRender(infosProgram);
+			documentariesMoviesContainer.style.display = 'block'
+			documentariesMoviesContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+			documentariesMoviesContainer.style.backgroundSize = `cover`;
+			documentariesMoviesContainer.style.backgroundPosition = `center`;
+			active = false
+			if(active == false){
+				let cross = documentariesMoviesContainer.getElementsByClassName('cross')
+				if(cross && cross[0]){
+					cross[0].addEventListener('click', (e) =>{
+						documentariesMoviesContainer.style.display = 'none'
+						active = true
+					})
+				}
+			}	
+		} 
+		else {
+		console.error()
+		}
+	}))
 })();
-
