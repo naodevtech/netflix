@@ -69,66 +69,63 @@ const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 
 // Modals
 (async () => {
-  let active = true;
-  document.querySelectorAll('#tvShowNetflix').forEach((film) => film.addEventListener('click', async (e) => {
-  let idTarget = parseInt(e.target.attributes[1].value)
-  let infosProgram = await fetchInfosModal(URL_TVSHOW, idTarget)
-  let netflixContainer = document.getElementById('container-modal-netflix')
-  // console.log(idTarget)
-  // console.log(infosProgram)
-  if(idTarget === infosProgram.id){
-	netflixContainer.innerHTML = modalRender(infosProgram);
-	netflixContainer.style.display = 'block'
-	netflixContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-	netflixContainer.style.backgroundSize = `cover`;
-	netflixContainer.style.backgroundPosition = `center`;
-	active = false
-	if(active == false){
-	let cross = netflixContainer.getElementsByClassName('cross')
-	if(cross && cross[0]){
-		cross[0].addEventListener('click', (e) =>{
-		console.log('hello')
-		netflixContainer.style.display = 'none'
-		active = true
-		})
-	}
-	document.getElementById('cross').addEventListener('click', (e) =>{
-	console.log('hello')
-	netflixContainer.style.display = 'none'
-	active = true
-	})} 
-  } else {
+	let active = true;
+	document.querySelectorAll('#tvShowNetflix').forEach((film) => film.addEventListener('click', async (e) => {
+		let idTarget = parseInt(e.target.attributes[1].value)
+		let infosProgram = await fetchInfosModal(URL_TVSHOW, idTarget)
+		let netflixContainer = document.getElementById('container-modal-netflix')
+		// console.log(idTarget)
+		// console.log(infosProgram)
+	if(idTarget === infosProgram.id){
+		netflixContainer.innerHTML = modalRender(infosProgram);
+		netflixContainer.style.display = 'block'
+		netflixContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+		netflixContainer.style.backgroundSize = `cover`;
+		netflixContainer.style.backgroundPosition = `center`;
+		active = false
+		if(active == false){
+			let cross = netflixContainer.getElementsByClassName('cross')
+		if(cross && cross[0]){
+			cross[0].addEventListener('click', (e) =>{
+				console.log('hello')
+				netflixContainer.style.display = 'none'
+				active = true
+			})
+		}
+		
+	}else {
     console.error()
-  }
+  	}
 }))
 })();
 
 (async () => {
 	let active = true;
 	document.querySelectorAll('#trendingNow').forEach((film) => film.addEventListener('click', async (e) => {
-	let idTarget = parseInt(e.target.attributes[1].value)
-	let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
-	let trendingsContainer = document.getElementById('container-modal-trendings')
-	if(idTarget === infosProgram.id){
-		trendingsContainer.innerHTML = modalRender(infosProgram);
-		trendingsContainer.style.display = 'block'
-		trendingsContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
-		trendingsContainer.style.backgroundSize = `cover`;
-		trendingsContainer.style.backgroundPosition = `center`;
-		active = false
-		if(active == false){
-		let cross = trendingsContainer.getElementsByClassName('cross')
-		if(cross && cross[0]){
-			cross[0].addEventListener('click', (e) =>{
-			console.log('hello')
-			trendingsContainer.style.display = 'none'
-			active = true
-			})
-		}}
-	} 
-	else {
-	console.error()
-	}
+		let idTarget = parseInt(e.target.attributes[1].value)
+		let infosProgram = await fetchInfosModal(URL_MOVIES, idTarget)
+		let trendingsContainer = document.getElementById('container-modal-trendings')
+		if(idTarget === infosProgram.id){
+			trendingsContainer.innerHTML = modalRender(infosProgram);
+			trendingsContainer.style.display = 'block'
+			trendingsContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${infosProgram.backdrop_path})`;
+			trendingsContainer.style.backgroundSize = `cover`;
+			trendingsContainer.style.backgroundPosition = `center`;
+			active = false
+			if(active == false){
+				let cross = trendingsContainer.getElementsByClassName('cross')
+				if(cross && cross[0]){
+					cross[0].addEventListener('click', (e) =>{
+						console.log('hello')
+						trendingsContainer.style.display = 'none'
+						active = true
+					})
+				}
+			}
+		} 
+		else {
+			console.error()
+		}
 	}))
 })();
 
