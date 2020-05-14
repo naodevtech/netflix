@@ -14,6 +14,17 @@ const URL_MOVIES = 'https://api.themoviedb.org/3/movie/';
 const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 const URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
+
+const debounce = (func, delay) => {
+	let inDebounce
+	return function() {
+		const context = this
+		const args = arguments
+		clearTimeout(inDebounce)
+		inDebounce = setTimeout(() => func.apply(context, args), delay)
+	}
+}
+
 // Fetch and display DOM
 (async () => {
     let movie = await fetchInfosModal(URL_MOVIES, 475557);
@@ -71,7 +82,7 @@ const URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 })();
 
 (async () => {
-	document.getElementById('inputSearch').addEventListener('input', async (e) => {
+	document.getElementById('inputSearch').addEventListener('input', debounce( async(e) => {
 		if(e.target.value){
 			console.log(e.target.value)
 			let infosProgram = await fetchSearching(URL_SEARCH, e.target.value);
@@ -93,9 +104,9 @@ const URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 			document.getElementById('header').style.display = 'block'
 			let containerSearch = document.getElementsByClassName('search-container')
 			containerSearch[0].innerHTML = ''
-			console.log(containerSearch[0].childNodes)
+			// console.log(containerSearch[0].childNodes)
 		})
-	})
+	}, 1000))
   })();
 
 
