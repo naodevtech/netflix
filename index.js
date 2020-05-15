@@ -1,4 +1,4 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchInfosModal, fetchSearching} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchInfosModal, fetchSearching, fetchGenerateToken} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
@@ -79,6 +79,22 @@ const debounce = (func, delay) => {
   for(let i = 0; i < moviesByGenre.length; i++){
     document.getElementById('documentariesMovies').innerHTML += documentariesMoviesRender(moviesByGenre, i)
   }
+})();
+
+
+
+(async () => {
+	document.getElementById('buttonLogin').addEventListener('click', async (e) => {
+		let token = await fetchGenerateToken()
+		const urlParams = new URLSearchParams(window.location.search);
+		const myParam = urlParams.get('request_token');
+		console.log(myParam)
+		if(myParam){
+			localStorage.setItem("request_token", myParam)
+		} else {
+			return window.location = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://127.0.0.1:5501`
+		}
+	})
 })();
 
 (async () => {
@@ -286,5 +302,3 @@ document.querySelectorAll('#ratedNow').forEach((film) => film.addEventListener('
 		}
 	}))
 })();
-
-// Input

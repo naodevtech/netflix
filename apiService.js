@@ -55,6 +55,22 @@ export async function fetchSearching(urlDefault, search) {
   const url = `${urlDefault}?${API_KEY}&include_adult=false&language=en-US&query=${search}`
   let res = await fetch(url)
   let infosProgram = await res.json()
-  console.log(infosProgram)
+  // console.log(infosProgram)
   return infosProgram.results;
 }
+
+export async function fetchGenerateToken() {
+  const url = `https://api.themoviedb.org/3/authentication/token/new?${API_KEY}`
+  let res = await fetch(url)
+  let token = await res.json()
+  // console.log(token)
+  return token.request_token
+}
+
+// export async function fetchAuthentification(token) {
+//   const url = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http:/http://127.0.0.1:5501//approved`
+//   let res = await fetch(url)
+//   let authentification = await res.json()
+//   console.log(authentification)
+//   return authentification.sucess;
+// }
