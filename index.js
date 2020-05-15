@@ -27,7 +27,7 @@ const debounce = (func, delay) => {
 // Fetch and display DOM
 (async () => {
 	let movie = await fetchMovie(475557);
-	console.log(movie)
+	// console.log(movie)
 	let video = await fetchVideoMovie(475557)
     // console.log(video)
 	document.getElementById("header").innerHTML = Header(movie, video);
@@ -36,7 +36,7 @@ const debounce = (func, delay) => {
 
 (async () => {
   let series = await fetchTvShowNetflix();
-  // console.log(series)
+  console.log(series)
   for(let i = 0; i < series.length; i++){
     document.getElementById('tvShowNetflix').innerHTML += tvShowNetflix(series, i)
   }

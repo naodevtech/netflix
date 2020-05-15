@@ -5,8 +5,8 @@ export default function modalRender(props) {
               <h2 class="modal__container-heading">${props.name || props.original_title}</h2>
               <div class="modal__container-details">
                 <p class="modal__container-details-p">Rating: ${Math.ceil(props.popularity)}%</p>
-                <p class="modal__container-details-p">Release date : ${props.release_date}</p>
-                <p class="modal__container-details-p">${props.runtime}</p>
+                <p class="modal__container-details-p">Release date : ${props.release_date || ' '}</p>
+                <p class="modal__container-details-p">${props.runtime || props.first_air_date}</p>
               </div>
               
               <p class="modal__container-overview">${props.overview}</p>
