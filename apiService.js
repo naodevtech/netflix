@@ -9,6 +9,14 @@ export async function fetchMovie(movieId) {
   return movie;
 }
 
+export async function fetchVideoMovie(movieId) {
+  const url = `${API_URL}${movieId}/videos?${API_KEY}&language=en-US`
+  let res = await fetch(url)
+  let video = await res.json()
+  // console.log(video)
+  return video.results[0].key
+}
+
 export async function fetchTvShowNetflix(){
   const url = `https://api.themoviedb.org/3/tv/popular?with_networks=213&${API_KEY}`
   let res = await fetch(url);

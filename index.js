@@ -1,4 +1,4 @@
-import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchInfosModal, fetchSearching, fetchGenerateToken} from "./apiService.js";
+import {fetchMovie, fetchTvShowNetflix, fetchMoviesTrendings, fetchTopRated, fetchByGenreMovies, fetchInfosModal, fetchSearching, fetchGenerateToken, fetchVideoMovie} from "./apiService.js";
 import Header from "./components/Header.mjs";
 import tvShowNetflix from './components/tvShowNetflix.mjs'
 import trendingsMoviesRender from './components/trendingsMoviesRender.mjs'
@@ -14,7 +14,6 @@ const URL_MOVIES = 'https://api.themoviedb.org/3/movie/';
 const URL_TVSHOW = 'https://api.themoviedb.org/3/tv/';
 const URL_SEARCH = 'https://api.themoviedb.org/3/search/movie';
 
-
 const debounce = (func, delay) => {
 	let inDebounce
 	return function() {
@@ -27,9 +26,11 @@ const debounce = (func, delay) => {
 
 // Fetch and display DOM
 (async () => {
-    let movie = await fetchInfosModal(URL_MOVIES, 475557);
-    // console.log(movie)
-    document.getElementById("header").innerHTML = Header(movie);
+	let movie = await fetchMovie(475557);
+	console.log(movie)
+	let video = await fetchVideoMovie(475557)
+    // console.log(video)
+	document.getElementById("header").innerHTML = Header(movie, video);
 	document.getElementById("header").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/f5F4cRhQdUbyVbB5lTNCwUzD6BP.jpg)`;
 })();
 
@@ -80,8 +81,6 @@ const debounce = (func, delay) => {
     document.getElementById('documentariesMovies').innerHTML += documentariesMoviesRender(moviesByGenre, i)
   }
 })();
-
-
 
 (async () => {
 	document.getElementById('buttonLogin').addEventListener('click', async (e) => {
